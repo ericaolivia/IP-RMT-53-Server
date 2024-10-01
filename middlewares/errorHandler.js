@@ -5,6 +5,9 @@ function errorHandler(err,req,res,next){
     if (err.name == 'Bad Request'){
         return res.status(400).json({message: err.message});
     }
+    if (err.name == 'Unauthenticated'){
+        return res.status(401).json({message: err.message});
+    }
     if (err.name == 'Unauthorized'){
         return res.status(401).json({message: err.message});
     }
