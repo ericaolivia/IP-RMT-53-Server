@@ -8,14 +8,16 @@ class RecipeController{
             //     params: {
             //       addRecipeNutrition: true,
             //       apiKey: process.env.SPOONACULAR_API_KEY,
-            //       offset: req.query.offset,  
-            //       number: req.query.number   
+            //       offset: req.query.offset || 0,  
+            //       number: req.query.number || 10,
+            //       query: req.query.query
             //     }
             //   });
         
             //   const recipes = response.data;
             //   res.status(200).json(recipes);
             // * TODO: sementara langsung ambil dari json, ntar perlu tembak api asli
+            // ! Keep in mind, paginationnya ga bakalan jalan
             const recipes = require('../datas/complexSearch.json');
             res.status(200).json(recipes);
         } catch (err){
