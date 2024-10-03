@@ -2,6 +2,13 @@ const axios = require("axios");
 const { Recipe, Favorite } = require("../models");
 
 class FavoriteController {
+  static async showFavorite(req,res,next){
+    try{
+
+    } catch (err){
+      next(err);
+    }
+  }
   static async createFavorite(req, res, next) {
     const { id } = req.params;
     try {
