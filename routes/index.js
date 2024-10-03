@@ -8,7 +8,7 @@ const errorHandler = require("../middlewares/errorHandler");
 router.use(userRouter);
 router.use(recipeRouter);
 router.use(favoriteRouter);
-router.use(aiRouter);
+// router.use(aiRouter);
 router.use(errorHandler);
 
 module.exports = router;

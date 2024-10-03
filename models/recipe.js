@@ -12,10 +12,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Recipe.hasMany(models.Favorite, { foreignKey: 'RecipeId' });
-      Recipe.belongsToMany(models.Tag, { through: models.RecipeTag, foreignKey: 'RecipeId' });
     }
   }
   Recipe.init({
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: false, 
+    },
     title: {
       type: DataTypes.STRING,
       allowNull:false,
@@ -53,18 +58,6 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    nutrition: {
-      type: DataTypes.TEXT,
-      allowNull:false,
-      validate:{
-        notNull:{
-          msg:'Nutrition is required'
-        },
-        notEmpty:{
-          msg:'Nutrition is required'
-        }
-      }
-    },
     imageUrl:{
       type: DataTypes.STRING,
       allowNull:false,
@@ -74,6 +67,21 @@ module.exports = (sequelize, DataTypes) => {
         },
         notEmpty:{
           msg:'Image is required'
+        }
+      }
+    },
+    tags:{
+      type: DataTypes.STRING,
+    },
+    ingredients:{
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notNull:{
+          msg:'Ingredients are required'
+        },
+        notEmpty:{
+          msg:'Ingredients are required'
         }
       }
     }
