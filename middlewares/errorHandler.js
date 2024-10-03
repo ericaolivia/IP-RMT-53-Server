@@ -1,7 +1,4 @@
 function errorHandler(err,req,res,next){
-    // if(err.name == 'AxiosError'){
-    //     return res.status(err.response.status).json({message: err.response.data.message});
-    // }
     if (err.name == 'SequelizeValidationError' || err.name == 'SequelizeUniqueConstraintError'){
         return res.status(400).json({message: err.errors[0].message});
     } 
