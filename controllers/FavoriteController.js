@@ -16,6 +16,7 @@ class FavoriteController {
       next(err);
     }
   }
+
   static async createFavorite(req, res, next) {
     const { id } = req.params;
     try {
@@ -76,6 +77,24 @@ class FavoriteController {
         .status(201)
         .json({ message: "Favorite added successfully", favorite });
     } catch (err) {
+      next(err);
+    }
+  }
+
+  static async deleteFavorite(req,res,next){
+    const {id} = req.params;
+    try{
+      const result = await Favorite.destroy({
+        where: {
+          RecipeId:id,
+          UserId: req.user.id, 
+        }
+      })
+      if (result === 0) {
+        return res.status(404).json({ name: "Not Found", message: 'Favorite not found' });
+      }
+      res.status(200).json({message: 'Successfully delete recipe from favorites'});
+    } catch (err){
       next(err);
     }
   }
