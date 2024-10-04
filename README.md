@@ -7166,4 +7166,5 @@ _Response 200_
 
 ```
 
+### DELETE /favorite/:id
 

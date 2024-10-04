@@ -24,39 +24,39 @@ class FavoriteController {
         });
         const recipeData = apiResponse.data;
 
-        const apiResponse2 = await axios({
-          method: "get",
-          url: `https://api.spoonacular.com/recipes/${id}/analyzedInstructions`,
-          params: {
-            apiKey: process.env.SPOONACULAR_API_KEY,
-          },
-        });
+        // const apiResponse2 = await axios({
+        //   method: "get",
+        //   url: `https://api.spoonacular.com/recipes/${id}/analyzedInstructions`,
+        //   params: {
+        //     apiKey: process.env.SPOONACULAR_API_KEY,
+        //   },
+        // });
 
-        const recipeData2 = apiResponse2.data;
+        // const recipeData2 = apiResponse2.data;
 
-        const instructionsArray = recipeData2.steps.map(
-          (stepObj) => stepObj.step
-        );
-        const instructionsString = instructionsArray.join(" ");
+        // const instructionsArray = recipeData2.steps.map(
+        //   (stepObj) => stepObj.step
+        // );
+        // const instructionsString = instructionsArray.join(" ");
 
-        let ingredientsSet = new Set();
+        // let ingredientsSet = new Set();
 
-        recipeData2.steps.forEach((step) => {
-          step.ingredients.forEach((ingredient) => {
-            ingredientsSet.add(ingredient.name);
-          });
-        });
+        // recipeData2.steps.forEach((step) => {
+        //   step.ingredients.forEach((ingredient) => {
+        //     ingredientsSet.add(ingredient.name);
+        //   });
+        // });
 
-        const ingredientsString = Array.from(ingredientsSet).join(", ");
+        // const ingredientsString = Array.from(ingredientsSet).join(", ");
 
         recipe = await Recipe.create({
           id: recipeData.id,
           title: recipeData.title,
           description: recipeData.summary,
-          instructions: instructionsString,
+          instructions: "Instructions coming soon",
           imageUrl: recipeData.image,
           tags: recipeData.diets.length > 0 ? recipeData.diets.join(", ") : "",
-          ingredients: ingredientsString,
+          ingredients: "Ingredients coming soon",
         });
       }
 
