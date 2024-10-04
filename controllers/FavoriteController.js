@@ -4,7 +4,14 @@ const { Recipe, Favorite } = require("../models");
 class FavoriteController {
   static async showFavorite(req,res,next){
     try{
+    const userId = req.user.id; 
 
+    const favorites = await Favorite.findAll({
+      where: { UserId: userId }, 
+      include: [Recipe] 
+    });
+
+    res.status(200).json(favorites);
     } catch (err){
       next(err);
     }
